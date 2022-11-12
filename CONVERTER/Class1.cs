@@ -49,11 +49,15 @@ namespace CONVERTER
                 list.Add(place);
                 Console.WriteLine(place.Name + "\n" + place.Width + "\n" + place.Height);
                 piece1 = piece;
-                Console.WriteLine("Нажмите F1, чтобы продолжить.");
+                Console.WriteLine("Нажмите F1, чтобы продолжить или нажмите F2, чтобы редактировать файл.");
                 ConsoleKeyInfo key = Console.ReadKey();
                 if (key.Key == ConsoleKey.F1)
                 {
                     window = 1;
+                }
+                else if (key.Key == ConsoleKey.F2)
+                {
+                    Edit(input);
                 }
             }
             else if (piece == "json")
@@ -66,11 +70,15 @@ namespace CONVERTER
                 Console.WriteLine(place.Name + "\n" + place.Width + "\n" + place.Height);
                 list.Add(place);
                 piece1 = piece;
-                Console.WriteLine("Нажмите F1, чтобы продолжить.");
+                Console.WriteLine("Нажмите F1, чтобы продолжить или нажмите F2, чтобы редактировать файл.");
                 ConsoleKeyInfo key = Console.ReadKey();
                 if (key.Key == ConsoleKey.F1)
                 {
                     window = 1;
+                }
+                else if (key.Key == ConsoleKey.F2)
+                {
+                    Edit(input);
                 }
             }
             else if (piece == "xml")
@@ -82,11 +90,15 @@ namespace CONVERTER
                 }
                 Console.WriteLine(mESTO.Name + "\n" + mESTO.Width + "\n" + mESTO.Height);
                 piece1 = piece;
-                Console.WriteLine("Нажмите F1, чтобы продолжить.");
+                Console.WriteLine("Нажмите F1, чтобы продолжить или нажмите F2, чтобы редактировать файл.");
                 ConsoleKeyInfo key = Console.ReadKey();
                 if (key.Key == ConsoleKey.F1)
                 {
                     window = 1;
+                }
+                else if (key.Key == ConsoleKey.F2)
+                {
+                    Edit(input);
                 }
             }
             
@@ -140,6 +152,44 @@ namespace CONVERTER
             else if (key.Key == ConsoleKey.Escape)
             {
                 Environment.Exit(0);
+            }
+        }
+
+        private void Edit(string input)
+        {
+            int indexe = input.IndexOf(".") + 1;
+            string piecee = input.Substring(indexe);
+            if (piecee == "txt" ^ piecee == "json")
+            {
+                Console.WriteLine("\nВведите название:");
+                list[0].Name = Convert.ToString(Console.ReadLine());
+                Console.WriteLine("Введите ширину:");
+                list[0].Width = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine("Введите высоту:");
+                list[0].Height = Convert.ToInt32(Console.ReadLine());
+
+                Console.WriteLine("\nНажмите F1, чтобы продолжить и применить редактирование.");
+                ConsoleKeyInfo key = Console.ReadKey();
+                if (key.Key == ConsoleKey.F1)
+                {
+                    window = 1;
+                }
+            }
+            else if (piecee == "xml")
+            {
+                Console.WriteLine("\nВведите название:");
+                mESTO.Name = Convert.ToString(Console.ReadLine());
+                Console.WriteLine("Введите ширину:");
+                mESTO.Width = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine("Введите высоту:");
+                mESTO.Height = Convert.ToInt32(Console.ReadLine());
+
+                Console.WriteLine("\nНажмите F1, чтобы продолжить и применить редактирование.");
+                ConsoleKeyInfo key = Console.ReadKey();
+                if (key.Key == ConsoleKey.F1)
+                {
+                    window = 1;
+                }
             }
         }
     }
